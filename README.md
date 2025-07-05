@@ -39,6 +39,7 @@ A Spring Boot microservice for managing products and categories with support for
 - **Hibernate Validator**
 - **JUnit 5 + Mockito**
 - **Maven**
+- **Kafka** (for product create, update, delete events on payment service)
 
 ---
 
@@ -51,6 +52,7 @@ Make sure you have the following installed:
 - Java 17+
 - Maven 3.8+
 - Redis server (local or remote)
+- Kafka server (product create, update, delete on payment service)
 
 ### ▶️ Build & Run
 
@@ -58,7 +60,7 @@ Make sure you have the following installed:
 #### Clone the repository
 
 ```bash
-git clone https://github.com/your-username/product-category-service.git
+git clone https://github.com/hemantkumar00/product-category-service.git
 cd product-category-service
 ```
 
@@ -100,12 +102,14 @@ mvn test
 
 ### 📦 Products
 
-| Method | Endpoint         | Description                |
-|--------|------------------|----------------------------|
-| POST   | /products/       | Create a product           |  
-| GET    | /products/{id}   | Get product by ID          |
-| PATCH  | /products/{id}   | Update a product           |
-| DELETE | /products/{id}   | Delete a product           |
+| Method | Endpoint                  | Description                                            |
+|--------|---------------------------|--------------------------------------------------------|
+| POST   | /products/                | Create a product                                       |  
+| GET    | /products/{id}            | Get product by ID                                      |
+| PATCH  | /products/{id}            | Update a product                                       |
+| DELETE | /products/{id}            | Delete a product                                       |
+| PATCH  | /products/inventory       | Update Product Inventory at the time of order creation |
+| GET    | /products//inventory/{id} | Get the inventory                                      |
 
 ### 🗂️ Categories
 | Method | Endpoint         | Description                |
